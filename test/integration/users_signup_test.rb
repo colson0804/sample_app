@@ -23,5 +23,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                             password_confirmation: "password" }
     end
     assert_template 'users/show'
+    assert_select "a[href=?]", login_path, count: 0
+    assert_select "a[href=?]", logout_path
+    assert is_logged_in?
   end
+
 end
