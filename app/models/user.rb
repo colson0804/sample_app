@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
 	validates :password, length: { minimum: 6 }, presence: true, allow_nil: true
 	has_secure_password
   has_many :microposts, dependent: :destroy
+  has_many :active_relationships, class_name:  "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent:   :destroy
 
 	# Returns the hash digest of the given string.
   def User.digest(string)
